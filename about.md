@@ -6,7 +6,7 @@ order: 1
 ---
 
 ## MSGalaxy
-MSGalaxy7, a materials focused
+MSGalaxy, a materials focused
 extension of the widely used Galaxy scientific workflow management system (SWMS). Our
 vision is for MSGalaxy to become a unifying platform for the transformation of materials data into
 materials knowledge through the integration of highly heterogeneous data sources and
