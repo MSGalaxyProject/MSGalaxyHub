@@ -10,6 +10,7 @@ lang:                  en
 # The unique resource location of your page.
 # Set to `https://<username>.github.io` when hosting on GitHub Pages.
 <<<<<<< HEAD
+<<<<<<< HEAD
 url:                   https://domain.tld
 
 # Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
@@ -31,6 +32,8 @@ keywords:              []
 # Used by jekyll-seo-tag...
 logo:                  /assets/icons/icon.png
 =======
+=======
+>>>>>>> origin/master
 url:                   https://domain.tld 
 
 # Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
@@ -49,6 +52,9 @@ keywords:              [MSGalaxy]
 
 # A (optional) logo for the page. Used by jekyll-seo-tag.
 logo:                  /hydejack/assets/icons/icon.png
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 # This should be the same author as first entry in `_data/authors.yml`.
@@ -57,14 +63,20 @@ author:
   name:                <firstname> <lastname>
   email:               <mail@domain.tld>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             The MSGalaxy Project is supported in part by Texas A&M University.
 =======
+=======
+>>>>>>> origin/master
   # The remainder of the author configuration is located in `_data/authors.yml`...
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             © 2017. MSGalaxyproject.org All Rights Reserved
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 # Format of the permalinks
@@ -73,7 +85,11 @@ permalink:             pretty
 # Pagination configuration (used by the `blog` layout)
 paginate:              5
 <<<<<<< HEAD
+<<<<<<< HEAD
 paginate_path:         /page-:num/
+=======
+paginate_path:         '/page-:num/'
+>>>>>>> origin/master
 =======
 paginate_path:         '/page-:num/'
 >>>>>>> origin/master
@@ -93,7 +109,11 @@ font_heading:          "'Roboto Slab', Helvetica, Arial, sans-serif"
 
 # Fallback image and color
 <<<<<<< HEAD
+<<<<<<< HEAD
 accent_image:          /assets/img/sidebar-bg.jpg
+=======
+accent_image:          /hydejack/assets/img/sidebar-bg.jpg
+>>>>>>> origin/master
 =======
 accent_image:          /hydejack/assets/img/sidebar-bg.jpg
 >>>>>>> origin/master
@@ -105,6 +125,7 @@ accent_color:          '#4fb1ba'
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
 <<<<<<< HEAD
+<<<<<<< HEAD
 # disqus:                <disqus_shortname>
 
 # Setting a tinyletter username will enable the newsletter subscription box.
@@ -114,6 +135,8 @@ accent_color:          '#4fb1ba'
 # To remove Google Anaylics from your page, remove the line below.
 # google_analytics:      UA-XXXXXXXX-X
 =======
+=======
+>>>>>>> origin/master
 disqus:                <disqus_shortname>
 
 # Setting a tinyletter username will enable the newsletter subscription box.
@@ -122,6 +145,9 @@ tinyletter:            <tinyletter_username>
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
 google_analytics:      UA-XXXXXXXX-X
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 
@@ -131,7 +157,11 @@ google_analytics:      UA-XXXXXXXX-X
 hydejack:
   # Configure the order of complementary content on blog posts
 <<<<<<< HEAD
+<<<<<<< HEAD
   post_addons:         [about, newsletter, related]
+=======
+  post_addons:         [about, newsletter, related, random]
+>>>>>>> origin/master
 =======
   post_addons:         [about, newsletter, related, random]
 >>>>>>> origin/master
@@ -166,7 +196,11 @@ hydejack:
   # You can set this to `true` if you don't want to set the `theme-color` meta tag,
   # This only affects the meta tag, not the color specified in the app manifest.
 <<<<<<< HEAD
+<<<<<<< HEAD
   no_theme_color:      false
+=======
+  no_theme_color:      true
+>>>>>>> origin/master
 =======
   no_theme_color:      true
 >>>>>>> origin/master
@@ -263,7 +297,11 @@ optional_front_matter:
 
 readme_index:
 <<<<<<< HEAD
+<<<<<<< HEAD
   remove_originals:    true
+=======
+  collections:         true
+>>>>>>> origin/master
 =======
   collections:         true
 >>>>>>> origin/master
