@@ -9,13 +9,11 @@ lang:                  en
 
 # The unique resource location of your page.
 # Set to `https://<username>.github.io` when hosting on GitHub Pages.
-<<<<<<< HEAD
-<<<<<<< HEAD
 url:                   https://domain.tld
 
 # Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
 # Set to '/<reponame>' when using the `gh-pages` branch of a repository.
-baseurl:               /MSGalaxy
+baseurl:               /MSGalaxyHub
 
 # A short description of the page used for the meta description tag.
 description:           >
@@ -31,68 +29,22 @@ keywords:              []
 
 # Used by jekyll-seo-tag...
 logo:                  /assets/icons/icon.png
-=======
-=======
->>>>>>> origin/master
-url:                   https://domain.tld 
-
-# Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
-# Set to '/<reponame>' when using the `gh-pages` branch of a repository.
-baseurl:               /MSGalaxyHub
-
-# A short description of the page used for the meta description tag.
-description:           >
-  A Jekyll theme with JavaScript Powers. Open `_config.yml` to edit this text.
-# A shorter description for the sidebar (will use `description` above when empty).
-tagline:               A Materials-focused extension of the widely used Galaxy scientic workflow management system.
-
-# A list of keywords for your blog, will be used as fallback
-# for pages that don't have `keywords` in their front matter.
-keywords:              [MSGalaxy]
-
-# A (optional) logo for the page. Used by jekyll-seo-tag.
-logo:                  /hydejack/assets/icons/icon.png
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the jekyll-feed plugin.
 author:
   name:                <firstname> <lastname>
   email:               <mail@domain.tld>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             The MSGalaxy Project is supported in part by Texas A&M University.
-=======
-=======
->>>>>>> origin/master
-  # The remainder of the author configuration is located in `_data/authors.yml`...
-
-# This text will appear in a `<small>` tag in the footer of every page.
-copyright:             © 2017. MSGalaxyproject.org All Rights Reserved
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 # Format of the permalinks
 permalink:             pretty
 
 # Pagination configuration (used by the `blog` layout)
 paginate:              5
-<<<<<<< HEAD
-<<<<<<< HEAD
 paginate_path:         /page-:num/
-=======
-paginate_path:         '/page-:num/'
->>>>>>> origin/master
-=======
-paginate_path:         '/page-:num/'
->>>>>>> origin/master
 
 # Customizaton
 # ========================================================================================
@@ -108,15 +60,7 @@ font:                  "'Noto Sans', Helvetica, Arial, sans-serif"
 font_heading:          "'Roboto Slab', Helvetica, Arial, sans-serif"
 
 # Fallback image and color
-<<<<<<< HEAD
-<<<<<<< HEAD
 accent_image:          /assets/img/sidebar-bg.jpg
-=======
-accent_image:          /hydejack/assets/img/sidebar-bg.jpg
->>>>>>> origin/master
-=======
-accent_image:          /hydejack/assets/img/sidebar-bg.jpg
->>>>>>> origin/master
 accent_color:          '#4fb1ba'
 
 # 3rd Party Integrations
@@ -124,8 +68,6 @@ accent_color:          '#4fb1ba'
 
 # Setting a disqus shortname will enable the comment section on
 # pages with `comments: true` in the front matter.
-<<<<<<< HEAD
-<<<<<<< HEAD
 # disqus:                <disqus_shortname>
 
 # Setting a tinyletter username will enable the newsletter subscription box.
@@ -134,21 +76,6 @@ accent_color:          '#4fb1ba'
 # Set your Google Analytics id to receive `pageview` events.
 # To remove Google Anaylics from your page, remove the line below.
 # google_analytics:      UA-XXXXXXXX-X
-=======
-=======
->>>>>>> origin/master
-disqus:                <disqus_shortname>
-
-# Setting a tinyletter username will enable the newsletter subscription box.
-tinyletter:            <tinyletter_username>
-
-# Set your Google Analytics id to receive `pageview` events.
-# To remove Google Anaylics from your page, remove the line below.
-google_analytics:      UA-XXXXXXXX-X
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 
 
 # Hydejack Flags
@@ -156,15 +83,7 @@ google_analytics:      UA-XXXXXXXX-X
 
 hydejack:
   # Configure the order of complementary content on blog posts
-<<<<<<< HEAD
-<<<<<<< HEAD
   post_addons:         [about, newsletter, related]
-=======
-  post_addons:         [about, newsletter, related, random]
->>>>>>> origin/master
-=======
-  post_addons:         [about, newsletter, related, random]
->>>>>>> origin/master
 
   # Configure the order of complementary content on project pages
   project_addons:      [about, newsletter, other]
@@ -195,15 +114,7 @@ hydejack:
 
   # You can set this to `true` if you don't want to set the `theme-color` meta tag,
   # This only affects the meta tag, not the color specified in the app manifest.
-<<<<<<< HEAD
-<<<<<<< HEAD
   no_theme_color:      false
-=======
-  no_theme_color:      true
->>>>>>> origin/master
-=======
-  no_theme_color:      true
->>>>>>> origin/master
 
   # Set to `true` when building with the `--lsi` option
   use_lsi:             false
@@ -296,15 +207,7 @@ optional_front_matter:
   remove_originals:    true
 
 readme_index:
-<<<<<<< HEAD
-<<<<<<< HEAD
   remove_originals:    true
-=======
-  collections:         true
->>>>>>> origin/master
-=======
-  collections:         true
->>>>>>> origin/master
 
 relative_links:
   collections:         true
