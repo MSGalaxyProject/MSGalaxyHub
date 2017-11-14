@@ -1,19 +1,19 @@
 # The primary author of this blog.
 # Must be the same as `author` in `_config.yml`.
 # Change `qwtel` to your shortname (used in the front matter to set a page's author, e.g. `author: qwtel`).
-qwtel:
+author1:
   name:              <firstname> <lastname>
   email:             <mail@domain.tld>
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             |
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+<<<<<<< HEAD
+  about:               
 
-    Open `_data/authors.yml` to edit this text.
-
+=======
+  about:             
+  
+>>>>>>> origin/master
   # This photo will be used in the about section
   picture:
     path:            https://placehold.it/128x128
@@ -69,11 +69,13 @@ qwtel:
   twitter:           <username>
 
 # Another author
-mdo:
+author2:
   name:              <firtname> <lastname>
   email:             <mail@domain.tld>
   about:             |
-    This is simply an example of the about area of the author. We can change it later.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
     Open `_data/authors.yml` to edit this text.
   picture:           https://placehold.it/128x128

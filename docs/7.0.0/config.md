@@ -6,8 +6,7 @@ description: >
 ---
 
 Once Jekyll is running, you can start with basic configuration by adding various entries to `_config.yml`.
-Besides the documentation here, the [default `_config.yml`](https://github.com/qwtel/hydejack/blob/master/_config.yml)
-is also documented extensively.
+Besides these descriptions, you can also read the [annotated config file](#annotated-config-file) below.
 
 **NOTE**: When making changes to `_config.yml`, it is necessary to restart the Jekyll process for the changes to take effect.
 {:.message}
@@ -23,6 +22,7 @@ The first order of business should be to set the correct `url` and `baseurl` val
 The `url` is the domain of your site, including the protocol (`http` or `https`). For this site, it is
 
 ~~~yml
+# file: _config.yml
 url: https://qwtel.com
 ~~~
 
@@ -30,21 +30,19 @@ If your entire Jekyll blog is hosted in a subdirectory of your page, provide the
 e.g.
 
 ~~~yml
+# file: _config.yml
 baseurl: /hydejack
 ~~~
 
 Otherwise, provide the empty string `''`
 
 ### GitHub Pages
-When hosting on [GitHub Pages](https://pages.github.com/) (unless you are using a custom domain), the `url` is
-
-~~~yml
-url: https://<username>.github.io
-~~~
+When hosting on [GitHub Pages](https://pages.github.com/) the `url` is `https://<username>.github.io`
+(unless you are using a custom domain).
 
 The `baseurl` depends on the kind of page you are hosting.
 
-* When hosting a *user or organization page*, use the empty string.
+* When hosting a *user or organization page*, use the empty string `''`.
 * When hosting *project page*, use `/<reponame>`.
 
 For for information on the types of pages you can host on GitHub, see the
@@ -57,7 +55,8 @@ Hydejack allows you to choose the background image of the sidebar, as well as th
 Set the fallback values in `_config.yml`, which are used should no other rule (page, category, tag, author) apply:
 
 ~~~yml
-accent_image: {{ site.baseurl }}/assets/img/sidebar-bg.jpg
+# file: _config.yml
+accent_image: /assets/img/sidebar-bg.jpg
 accent_color: '#A85641'
 ~~~
 
@@ -66,20 +65,24 @@ If you save a blurred image as JPG, it will also drastically reduce its file siz
 {:.message}
 
 
-The `accent_image` is optional. If you leave it out, Hydejack will use the `accent_color` as background (slightly darkened).
+The `accent_image` property also accepts the special value `none` which will remove the default image.
+
 You can also provide a single color instead of an image like this:
 
 ~~~yml
+# file: _config.yml
 accent_image:
   background: '#202020' # provide a valid CSS background value
+  overlay:    false     # set to true if you want a dark overlay
 ~~~
 
 ## Changing fonts
-Hydejack lets you configure the font of regular text and headlines and it has built-in support for Google Fonts.
-There are three keys in `_config.yml` associated with it: `font`, `font_heading` and `google_fonts`.
+Hydejack lets you configure the font of regular text and headlines, and it has built-in support for Google Fonts.
+There are three keys in `_config.yml` associated with this: `font`, `font_heading` and `google_fonts`.
 The defaults are:
 
 ~~~yml
+# file: _config.yml
 font:         "'Noto Sans', Helvetica, Arial, sans-serif"
 font_heading: "'Roboto Slab', Helvetica, Arial, sans-serif"
 google_fonts: "Roboto+Slab:700|Noto+Sans:400,400i,700,700i"
@@ -98,6 +101,7 @@ If you prefer not to use Google Fonts and use [safe web fonts](http://www.cssfon
 set `no_google_fonts` to `true`:
 
 ```yml
+# file: _config.yml
 hydejack:
   no_google_fonts: true
 ```
@@ -120,24 +124,86 @@ title:  Home
 ---
 ~~~
 
-If you want to use the `blog` layout, you need to add the `paginate` and `paginate_path` keys to your config file, e.g.
+If you want to use the `blog` layout, you need to add `jekyll-paginate` to your `Gemfile` and to the `plugins` list in your config file:
+
+```ruby
+# file: Gemfile
+gem "jekyll-paginate"
+```
+
+```yml
+# file: _config.yml
+plugins:
+  - jekyll-paginate
+```
+
+You also need to add the `paginate` and `paginate_path` keys to your config file, e.g.
 
 ~~~yml
+# file: _config.yml
 paginate:      5
 paginate_path: '/page-:num/'
 ~~~
 
 The `blog` layout needs to be applied to a file with the `.html` file extension
-and the `paginate_path` needs to match the path to the `index.html` file,
-i.e. if you want the blog to appear at `/blog/`, put a `index.html` in the `blog` dir and set `paginate_path` to be `/blog/page-:num/`.
+and the `paginate_path` needs to match the path to the `index.html` file.
+To match the `paginate_path` above, put a `index.html` with the following front matter in the root directory:
+
+~~~yml
+# file: index.html
+---
+layout: blog
+title: Blog
+---
+~~~
 
 For more information see [Pagination](https://jekyllrb.com/docs/pagination/).
+
+### Using the `blog` layout in a subdirectory
+If you want to use the blog layout at a URL like `/my-blog/`, create the following folder structure:
+
+~~~
+├── my-blog
+│   └── index.html
+├── my-blog.md
+└── _config.yml
+~~~
+
+You can use the same `index.html` as before:
+
+~~~yml
+# file: my-blog/index.html
+---
+layout: blog
+title: Blog
+---
+~~~
+
+(Optional) If you want to add a link to the blog in the sidebar, DO NOT add the `menu` key to the front matter of `my-blog/index.html`.
+Instead, create a new markdown file called `my-blog.md` and add it there:
+
+~~~yml
+# file: my-blog.md
+---
+title: Blog
+menu: true
+---
+~~~
+
+Finally, in your cofnig file, make sue the `pageinate_path` matches the location of the index file:
+
+~~~yml
+# file: _config.yml
+paginate:      5
+paginate_path: /my-blog/page-:num/
+~~~
 
 ## Adding an author
 As a bare minimum, you should add an `author` key with a `name` and `email` sub-key
 (used by the [feed plugin](https://github.com/jekyll/jekyll-feed)) to to your config file:
 
 ~~~yml
+# file: _config.yml
 author:
   name:  Florian Klampfer
   email: mail@qwtel.com
@@ -148,6 +214,7 @@ as well as the top of about and welcome\* pages, add an `about` key and provide 
 I recommend using the YAML pipe `|` syntax, so you can include multiple paragraphs:
 
 ~~~yml
+# file: _config.yml
 author:
   name:  Florian Klampfer
   email: mail@qwtel.com
@@ -159,23 +226,46 @@ author:
 
 ### Adding an author's picture
 If you'd like for the author's picture to appear in addition the the about text (see above),
-you have to provide an URL to the `picture` key:
+you can either use the [`jekyll-avatar`](https://github.com/benbalter/jekyll-avatar) plugin or provide URLs to images manually.
+
+To use the plugin, add it to your `Gemfile` and the list of `plugins` in your config file:
+
+```ruby
+# file: Gemfile
+gem "jekyll-avatar"
+```
+
+```yml
+# file: _config.yml
+plugins:
+  - jekyll-avatar
+```
+
+Run `bundle install` for the changes to take effect.
+
+Make sure you have provided a GitHub username in your config file (`github_username`),
+or to the author key (`author.social.github`, `author.github.username`, or `author.github`).
+See [Adding social media icons](#adding-social-media-icons) for more.
+
+To set an image manually, you have to provide an URL to the author's `picture` key:
 
 ~~~yml
+# file: _config.yml
 author:
-  picture:  {{ site.baseurl }}/assets/img/me.jpg
+  picture:  /assets/img/me.jpg
 ~~~
 
-If you'd like to provide multiple versions of the picture for screens with different pixel densities,
-you can provide `path` and `srcset` keys instead.
+If you'd like to provide multiple versions for screens with different pixel densities,
+you can provide `path` and `srcset` keys instead:
 
 ~~~yml
+# file: _config.yml
 author:
   picture:
-    path:   {{ site.baseurl }}/assets/img/me.jpg
+    path:   /assets/img/me.jpg
     srcset:
-      1x:   {{ site.baseurl }}/assets/img/me.jpg
-      2x:   {{ site.baseurl }}/assets/img/me@2x.jpg
+      1x:   /assets/img/me.jpg
+      2x:   /assets/img/me@2x.jpg
 ~~~
 
 The `path` key is a fallback image for browsers that don't support the `srcset` attribute.
@@ -199,6 +289,7 @@ You can add a link to a social network by adding an entry to the `social` key in
 It consists of the name of the social network as key and your username within that network as value, e.g.
 
 ~~~yml
+# file: _config.yml
 author:
   social:
     twitter: qwtel
@@ -211,6 +302,7 @@ You can also follow the steps [here](advanced.md) to add your own social media i
 You can change the order in which the icons appear by moving lines up or down, e.g.
 
 ~~~yml
+# file: _config.yml
 author:
   social:
     github:  qwtel # now github appears first
@@ -223,8 +315,10 @@ see the included [`authors.yml`](https://github.com/qwtel/hydejack/blob/master/_
 Should providing a username not produce a correct link for some reason, you can provide a complete URL instead, e.g.
 
 ~~~yml
-social:
-  youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
+# file: _config.yml
+author:
+  social:
+    youtube: https://www.youtube.com/channel/UCu0PYX_kVANdmgIZ4bw6_kA
 ~~~
 
 **NOTE**: You can add any platform, even if it's not defined in [`social.yml`](https://github.com/qwtel/hydejack/blob/master/_data/social.yml),
@@ -233,13 +327,17 @@ Supplying your own icons is an [advanced topic](advanced.md).
 {:.message}
 
 
-### Adding an email or RSS icon
-If you'd like to add email <span class="icon-mail"></span> or RSS <span class="icon-rss2"></span> to the list, add the `email` and `rss` keys, e.g.:
+### Adding an email, RSS icon or download icon
+If you'd like to add an email <span class="icon-mail"></span>, RSS <span class="icon-rss2"></span>, or download <span class="icon-box-add"></span> icon to the list,
+add the `email`, `rss`, or `download` key, e.g.:
 
 ~~~yml
-social:
-  email: mailto:mail@qwtel.com
-  rss:   {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
+# file: _config.yml
+author:
+  social:
+    email:    mailto:mail@qwtel.com
+    rss:      {{ site.url }}{{ site.baseurl }}/feed.xml # make sure you provide an absolute URL
+    download: https://github.com/qwtel/hydejack/archive/v7.2.0.zip
 ~~~
 
 ## Enabling comments
@@ -248,7 +346,8 @@ Before you can add comments to a page you need to register and add your site to 
 Once you have obtained your "Disqus shortname", you include it in your config file:
 
 ~~~yml
-disqus: <Disqus shortname>
+# file: _config.yml
+disqus: <disqus shortname>
 ~~~
 
 Now comments can be enabled by adding `comments: true` to the front matter.
@@ -266,6 +365,7 @@ You can enable comments for entire classes of pages by using
 E.g. to enable comments on all posts, add to your config file:
 
 ~~~yml
+# file: _config.yml
 defaults:
   - scope:
       type: posts
@@ -273,11 +373,11 @@ defaults:
       comments: true
 ~~~
 
-
 ## Enabling Google Analytics
 Enabling Google Analytics is as simple as setting the `google_analytics` key.
 
 ~~~yml
+# file: _config.yml
 google_analytics: UA-XXXXXXXX-X
 ~~~
 
@@ -295,6 +395,7 @@ You may also use this feature to translate the theme into different languages.
 In this case you should also set the `lang` key to your config file, e.g.
 
 ```yml
+# file: _config.yml
 lang: cc-ll
 ```
 
@@ -304,11 +405,280 @@ You may also change the strings used for formatting dates and times (look out fo
 but be aware that the values you provide need to be valid
 Ruby [format directives](http://ruby-doc.org/core-2.4.1/Time.html#method-i-strftime).
 
+## Enabling newsletter boxes*
+To enable showing newsletter subscription boxes below each post and project,
+provide your [Tinyletter] username to the `tinyletter` key in the config file.
+
+```yml
+# file: _config.yml
+tinyletter:  <tinyletter username>
+```
+
+To edit the content of the newsletter box, open `_data/strings.yml`, and change the entries under the `tinyletter` key.
+
+If want to use a different mailing provider, like MailChimp, you can build your own form,
+and insert it into `_includes/my-newsletter.html`.
+There you will also find an example form for MailChimp, where you need to fill in `site.mailchimp.action` and `site.mailchimp.hidden_input`
+(you can get these from MailChimp).
+
+To build a completely new from, you can use [the same CSS classes as Bootstrap](https://getbootstrap.com/docs/4.0/components/forms/).
+Note that only form, grid and utility classes are available.
+Check out [Forms by Example](forms-by-example.md){:.heading.flip-title} for some examples.
+
+## Annotated config file
+Below you find the the complete default `_config.yml` file. You may want to copy it when using the gem-based version of the theme.
+
+```yml
+# Config
+# ========================================================================================
+
+title:                 Hydejack
+
+# Language of your content in 2-letter code, eg: en, de.
+# You may also provide a location, eg: en-us, de_AT.
+lang:                  en
+
+# The unique resource location of your page.
+# Set to `https://<username>.github.io` when hosting on GitHub Pages.
+url:                   https://domain.tld
+
+# Set to '' when hosting on GitHub Pages, like `//<username>.github.io`.
+# Set to '/<reponame>' when using the `gh-pages` branch of a repository.
+baseurl:               /hydejack
+
+# A short description of the page used for the meta description tag.
+description:           >
+  A Jekyll theme with JavaScript powers. "Best Theme by a Mile".
+  Combines the best of static sites and modern web apps.
+  Open `_config.yml` to edit this text.
+
+# A shorter description for the sidebar.
+tagline:               >
+  A Jekyll theme with JavaScript powers.
+  Open `_config.yml` to edit this text.
+
+# A list of keywords for your blog, will be used as fallback
+# for pages that don't have `keywords` in their front matter.
+keywords:              []
+
+# Used by jekyll-seo-tag...
+logo:                  /assets/icons/icon.png
+
+# This should be the same author as first entry in `_data/authors.yml`.
+# Duplication is necessary due to the jekyll-feed plugin.
+author:
+  # name:                <firstname> <lastname>
+  # email:               <mail@domain.tld>
+
+# This text will appear in a `<small>` tag in the footer of every page.
+copyright:             © 20XX. Open _config.yml to edit this text.
+
+# Format of the permalinks
+permalink:             pretty
+
+# Pagination configuration (used by the `blog` layout)
+paginate:              5
+paginate_path:         /blog/page-:num/
+
+# Customizaton
+# ========================================================================================
+
+# The string encoding which fonts to fetch from Google Fonts.
+# See: <https://qwtel.com/hydejack/docs/configuration/>
+google_fonts:          Roboto+Slab:700|Noto+Sans:400,400i,700,700i
+
+# The text font. Expects a string that is a valid CSS font-family value.
+font:                  "'Noto Sans', Helvetica, Arial, sans-serif"
+
+# The font used for headings. Expects a string that is a valid CSS font-family value.
+font_heading:          "'Roboto Slab', Helvetica, Arial, sans-serif"
+
+# Fallback image and color
+accent_image:          /assets/img/sidebar-bg.jpg
+accent_color:          '#4fb1ba'
+
+# 3rd Party Integrations
+# ----------------------------------------------------------------------------------------
+
+# Setting a disqus shortname will enable the comment section on
+# pages with `comments: true` in the front matter.
+# disqus:                <disqus_shortname>
+
+# Setting a tinyletter username will enable the newsletter subscription box.
+# tinyletter:            <tinyletter_username>
+
+# Set your Google Analytics id to receive `pageview` events.
+# To remove Google Anaylics from your page, remove the line below.
+# google_analytics:      UA-XXXXXXXX-X
+
+
+# Hydejack Flags
+# ----------------------------------------------------------------------------------------
+
+hydejack:
+  # Configure the order of complementary content on blog posts
+  post_addons:         [about, newsletter, related, random]
+
+  # Configure the order of complementary content on project pages
+  project_addons:      [about, newsletter, other]
+
+  # If you do not use Google Fonts, set to `true`.
+  no_google_fonts:     false
+
+  # Set to `true` if you don't want to show an icon indicating external links
+  no_mark_external:    false
+
+  # Set to `true` if third party plugins fail to work with dynamically loaded pages
+  no_push_state:       false
+
+  # Set to `true` if you want to disable the drawer
+  no_drawer:           false
+
+  # Set to `true` if you do not want parts of the css inlined in <head/>
+  # This *may* be benefitial when serving the site over HTTP/2.
+  no_inline_css:       false
+
+  # Code blocks and tables "break" the layout by spanning the full available width.
+  # Set this to true if you want them to be the same width as other content.
+  no_break_layout:     false
+
+  # Set to `true` if you do not want to expose your resume and projects
+  # in machine-readable formats.
+  no_structured_data:  false
+
+  # You can set this to `true` if you don't want to set the `theme-color` meta tag,
+  # This only affects the meta tag, not the color specified in the app manifest.
+  no_theme_color:      false
+
+  # Set to `true` when building with the `--lsi` option
+  use_lsi:             false
+
+
+# Collections
+# ========================================================================================
+
+collections:
+  featured_categories:
+    permalink:         /category/:name/
+    output:            true
+
+  featured_tags:
+    permalink:         /tag/:name/
+    output:            true
+
+  projects:
+    permalink:         /projects/:path/
+    output:            true
+
+
+# File inclusion/exclusion
+# ========================================================================================
+
+exclude:
+  - README.md
+  - node_modules
+  - vendor
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+include:
+  - LICENSE.md
+
+
+# Plugins and Plugin Configuration
+# ========================================================================================
+
+plugins:
+  # - jekyll-avatar
+  # - jekyll-default-layout
+  - jekyll-feed
+  # - jekyll-gist
+  # - jekyll-optional-front-matter
+  - jekyll-paginate
+  # - jekyll-readme-index
+  # - jekyll-redirect-from
+  - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  # - jekyll-titles-from-headings
+
+
+# SEO Tag
+# ---------------------------------------------------------------------------------------
+
+# Where you proof that you own this site (used by jekyll-seo-tag)
+# google_site_verification: <verification-id>
+# -- or --
+# webmaster_verifications:
+#   google:              <verification-id>
+#   bing:                <verification-id>
+#   alexa:               <verification-id>
+#   yandex:              <verification-id>
+
+# Used for Twitter cards
+# twitter:
+#   username:            <shortname>
+
+# Used for Facebook open graph
+# facebook:
+#   app_id:              <id>
+#   publisher:           <id>
+#   admins:              <id>
+
+# Used on index and about sites
+# social:
+#   name:                <firstname> <lastname>
+#   links:
+#     - https://twitter.com/<username>
+#     - https://github.com/<username>
+
+
+# Other Plugins
+# ---------------------------------------------------------------------------------------
+
+optional_front_matter:
+  remove_originals:    true
+
+readme_index:
+  remove_originals:    true
+
+relative_links:
+  collections:         true
+
+titles_from_headings:
+  strip_title:         true
+  collections:         true
+
+kramdown:
+  footnote_backlink:   '&#x21a9;&#xfe0e;'
+  math_engine:         mathjax
+  math_engine_opts:
+    preview:           true
+    preview_as_code:   true
+
+compress_html:
+  comments:            ["<!-- ", " -->"]
+  clippings:           all
+  endings:             all
+  ignore:
+    envs:              [development]
+
+sass:
+  style:               compressed
+
+# If you are upgrading form v5 (or earlier), uncomment the lines below,
+# so that the location of the feed XML stays the same.
+# feed:
+#   path:                atom.xml
+```
+
 Continue with [Basics](basics.md){:.heading.flip-title}
 {:.read-more}
 
 [blog]: https://qwtel.com/hydejack/blog/
 [posts]: https://qwtel.com/hydejack/posts/
+[tinyletter]: https://tinyletter.com/
 
 *[FOIT]: Flash of Invisible Text
 *[GA]: Google Analytics
