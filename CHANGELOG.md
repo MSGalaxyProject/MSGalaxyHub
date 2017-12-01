@@ -3,16 +3,86 @@ layout: page
 title: CHANGELOG
 ---
 
+## v7.2.0
+Nov 13 2017
+{:.heading.post-date}
+
+### Added
+* Added `_sass/my-variables.scss` file, which you can use to selectively override SCSS variables.
+* Font weights can now be configured via SCSS variables:
+  * `$font-weight` for normal font.
+  * `$font-weight-bold` for `strong` tags and similar.
+  * `$font-weight-heading` for headings.
+
+### Design
+* Message boxes will no longer span the full width, even with the break layout feature enabled.
+* Increased space between project card rows, so they look less like a brick wall.
+
+### Fixes
+* Reduced the draw range of the drawer on iOS, so that a larger portion of the screen is available for zooming (a11y).
+* Default images are now optimized, so they are no longer flagged by Google PageSpeed Insights and similar tools.
+* Query parameters are no longer used for cache busting.
+  Instead, the version number is no part of the file name for the CSS and JS resources.
+
+
+## v7.1.1
+Nov 3 2017
+{:.heading.post-date}
+
+### Fixes
+* Fix IE11 feature detection
+
+## v7.1.0
+Nov 2 2017
+{:.heading.post-date}
+
+### Changed
+* Renamed `no_description` to `hide_description`.
+  Since this feature isn't yet documented outside of the change log, the old name *will not* continue to work.
+* When providing images to `image`, `image.path`, `image.src`, `image.srcset` and `accent_image `,
+  it is no longer necessary to prepend the url with the `baseurl` of the site,
+  e.g. values like `accent_image: /assets/img/sidebar-bg.jpg` are now valid.
+* Limited scope of `a` and `img` styles to content areas.
+* Upgraded KaTeX to v0.8.3
+* Upgraded `jekyll-relative-links` to v5.0.1
+
+### Fixes
+* `font` and `font_heading` are now properly set when using the `no_inline_css` option [#47](https://github.com/qwtel/hydejack/issues/47).
+* Fixed default values for `image` and `logo` that were referring to non-existing images.
+* Added missing JS dev dependencies.
+
+### Content
+* Updated documentation
+* Updated index, download, about and README pages.
+
+## v7.0.1
+Oct 27 2017
+{:.heading.post-date}
+
+### Fixes
+* Removed readme files from `assets` that would show up as pages when building on GitHub Pages [#42](https://github.com/qwtel/hydejack/issues/42).
+* Disabled push state on Firefox for iOS
+* Changed some default settings in `_config.yml`
+
+### Content
+* Updated documentation
+
+## Removed
+* Removed outdated example script in `my-scripts.html`
+
 ## v7.0.0
 Oct 24 2017
 {:.heading.post-date}
 
 ### License Change
 The *free version* of Hydejack is now [GPL-3.0] licensed, which is a more restrictive license than MIT (but still *Open Source*).
-This was necessary because the two major components that make up Hydejack, [hy-push-state](https://qwtel.com/hy-push-state/) and
-[hy-drawer](https://qwtel.com/hy-drawer/), are now GPL licensed in turn.
+This was necessary because the two major components that make up Hydejack,
+[hy-push-state](https://qwtel.com/hy-push-state/){:.external} and
+[hy-drawer](https://qwtel.com/hy-drawer/){:.external},
+are now GPL licensed in turn.
 
 How will this affect you?
+* If you bought the *PRO version* you are not affected at all.
 * You can continue to use previous versions of Hydejack according to their license (MIT).
 * If you upgrade, keep the source code in a public repository and make sure you include the new `LICENSE.md` file.
   DO NOT publish the *new code* with an *old license*.
@@ -32,8 +102,7 @@ Some names have changed and are no longer mentioned in the docs, but they are st
 
 That being said, you should be aware of these (small) breaking changes:
 
-* (Fav-)icons are now located in `/assets/img/icons/`. To change the (fav-)icon of the page, edit the images in the folder.
-  Buyers of the PRO version get a .psd file to assist the creation.
+* The favicon is now located in `assets/icons`. To change the favicon of the page, edit `favicon.ico` (png) in the folder.
 
 * Changed the way tables work, so that they do the right thing more often.
   Tables are now scrollable by default, but small tables are no longer stretched to span the full width.
@@ -44,7 +113,7 @@ That being said, you should be aware of these (small) breaking changes:
 * Event names described in the scripting chapter have changed from `y-push-state-*` to `hy-push-state-*`,
   except `y-push-state-animationend`, which has been removed. See the [docs][pstate] for more.
 
-[pstate]: docs/7.0.0/scripts.md#registering-push-state-event-listeners
+[pstate]: docs/7.2.0/scripts.md#registering-push-state-event-listeners
 
 ### Changes
 * `image` has been renamed to `accent_image`, but `image` continues to work unless you add the `jekyll-seo-tag` plugin.
@@ -197,7 +266,7 @@ That being said, you should be aware of these (small) breaking changes:
 * Added an error page that is shown when client-side network errors occur. It contains a link to retry loading the page.
   Previously, the browser's default error page would have been shown.
 
-* Added `no_description` option to pages to prevent the content of `description` fields to show up in the output.
+* Added `hide_description` option to pages to prevent the content of `description` fields to show up in the output.
   This allows you to use the `description` field in the front matter to set descriptions for search engines and sharing on social media,
   without having to worry about the output.
 
@@ -208,7 +277,7 @@ That being said, you should be aware of these (small) breaking changes:
     - scope:
         path: ''
       values:
-        no_description: true
+        hide_description: true
   ```
 
 * Added a new option called `no_inline_css`.
@@ -243,7 +312,7 @@ That being said, you should be aware of these (small) breaking changes:
 * Reduced building time during development.
   Roughly 50% of the time was spent rebuilding the inline CSS, which is now built once and included via `link` tag.
   Production builds still inlines CSS, so the building speed remains unchanged.
-  For more on how to improve building speeds, [see here](docs/7.0.0/writing.md#a-word-on-building-speeds).
+  For more on how to improve building speeds, [see here](docs/7.2.0/writing.md#a-word-on-building-speeds).
 
 ### Design
 * The default background image is no longer anti-selling the theme...
@@ -681,9 +750,9 @@ Oct 15 2013
 {:.heading.post-date}
 
 [tag]: http://www.minddust.com/post/tags-and-categories-on-github-pages/
-[migration]: docs/7.0.0/migration.md
-[writing]: docs/7.0.0/writing.md
-[scripts]: docs/7.0.0/scripts.md
+[migration]: docs/7.2.0/migration.md
+[writing]: docs/7.2.0/writing.md
+[scripts]: docs/7.2.0/scripts.md
 
 [buy]: https://app.simplegoods.co/i/AQTTVBOE
 [PRO-license]: licenses/PRO.md
